@@ -1,5 +1,8 @@
 package com.rheydne.todosimple.model;
 
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,32 +20,33 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Table(name = "user")
 public class User {
 
+    // Age junto com os groups, dos atributos
+    // Serve para nao deixar os atributos nulos, vazios e fora do size na comunicação com o banco de dados
     public interface CreateUser{}
 
     public interface UpdateUser{}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Necessario para definir o ID como identity no banco de dados
     @Column(name = "id", unique = true)
     private Long id;
 
-    @Column(name = "username", length = 100, nullable = false, unique = true)
+    @Column(name = "username", length = 100, nullable = false, unique = true) // Define algumas caracteristicas das colunas
     @NotNull(groups = CreateUser.class)
     @NotEmpty(groups = CreateUser.class)
     @Size(groups = CreateUser.class, min = 2, max = 100)
     private String username;
 
-    @JsonProperty(access = Access.WRITE_ONLY)
+    @JsonProperty(access = Access.WRITE_ONLY) // Vai garantir que a senha podera ser acessada apenas para ser escrita (sem retorno de dados na api)
     @Column(name = "password", length = 60, nullable = false)
-    @NotNull(groups = { CreateUser.class, UpdateUser.class} )
-    @NotEmpty(groups = { CreateUser.class, UpdateUser.class} )
-    @Size(groups = { CreateUser.class, UpdateUser.class} , min = 8, max = 60)
+    @NotNull(groups = { CreateUser.class, UpdateUser.class } )
+    @NotEmpty(groups = { CreateUser.class, UpdateUser.class } )
+    @Size(groups = { CreateUser.class, UpdateUser.class } , min = 8, max = 60)
     private String password;
 
-    //  private List<Task> tasks = new ArrayList<Task>();
+    // private List<Task> tasks = new ArrayList<Task>();
 
     public User() {
-
     }
 
     public User(Long id, String username, String password) {
@@ -50,7 +54,6 @@ public class User {
         this.username = username;
         this.password = password;
     }
-    
 
     public Long getId() {
         return this.id;
@@ -76,4 +79,30 @@ public class User {
         this.password = password;
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj == null)
+            return false;
+        if (! (obj instanceof User)) 
+            return false;
+        User other = (User) obj;
+        if (this.id == null)
+            if (other.id != null)
+                return false;
+            else if (!this.id.equals(other.id))
+                return false;
+        return Objects.equals(this.id, other.id) && Objects.equals(this.username, other.username)
+            && Objects.equals(this.password, other.password);
+        
+    }
+
+    @Override
+    public int hashCode () {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ( (this.id == null) ? 0 : this.id.hashCode() );
+        return result;
+    }
 }
