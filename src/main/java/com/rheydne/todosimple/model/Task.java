@@ -15,23 +15,23 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
-@Entity
-@Table(name = "task")
+@Entity // Anotação para indicar que a classe é uma entidade mapeada para uma tabela no banco de dados
+@Table(name = "task") // Especifica o nome da tabela no banco de dados correspondente a essa entidade
 public class Task {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true)
+    @Id // Anotação para indicar que o atributo é uma chave primária
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Define a estratégia de geração automática do valor da chave primária
+    @Column(name = "id", unique = true) // Mapeia o atributo para a coluna "id" na tabela "task"
     private Long id;
 
-    @ManyToOne // Varias tarefas podem ser de um usuário
-    @JoinColumn(name = "user_id", nullable = false, updatable = false) 
+    @ManyToOne // Define um relacionamento muitos-para-um com a entidade User (várias tarefas podem ser de um usuário)
+    @JoinColumn(name = "user_id", nullable = false, updatable = false) // Define a coluna "user_id" como chave estrangeira para o relacionamento
     private User user;
 
-    @Column(name = "description", length = 255, nullable = false)
-    @NotNull
-    @NotBlank
-    @Size(min = 1, max = 255)
+    @Column(name = "description", length = 255, nullable = false) // Mapeia o atributo para a coluna "description" na tabela "task", com tamanho máximo de 255 caracteres
+    @NotNull // Anotação de validação que especifica que o atributo não pode ser nulo
+    @NotBlank // Anotação de validação que especifica que o atributo não pode estar em branco (espaços em branco não são considerados)
+    @Size(min = 1, max = 255) // Anotação de validação que especifica o tamanho mínimo e máximo da string
     private String description;
 
     public Task() {
