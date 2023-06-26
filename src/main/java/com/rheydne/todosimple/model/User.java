@@ -47,7 +47,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user") // Um usuário pode ter várias tarefas
-    private List<Task> tasks = new ArrayList<Task>();
+    private List<Task> tasks = new ArrayList<Task>(); // Declara uma lista de taks para um usuario (Relacionamento entre as classes)
 
     public List<Task> getTasks() {
         return this.tasks;
