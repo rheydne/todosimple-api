@@ -12,7 +12,7 @@ import com.rheydne.todosimple.repositories.UserRepository;
 @Service
 public class UserService {
     
-    @Autowired
+    @Autowired // Injeção de dependencias
     private UserRepository userRepository; // Repositório para acessar dados de usuários
 
     public User findById(Long id) {
