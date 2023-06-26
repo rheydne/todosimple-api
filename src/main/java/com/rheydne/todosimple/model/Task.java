@@ -26,7 +26,7 @@ public class Task {
 
     @ManyToOne // Define um relacionamento muitos-para-um com a entidade User (várias tarefas podem ser de um usuário)
     @JoinColumn(name = "user_id", nullable = false, updatable = false) // Define a coluna "user_id" como chave estrangeira para o relacionamento
-    private User user;
+    private User user; // Declara um usuario para uma task (Relacionamento entre as classes)
 
     @Column(name = "description", length = 255, nullable = false) // Mapeia o atributo para a coluna "description" na tabela "task", com tamanho máximo de 255 caracteres
     @NotNull // Anotação de validação que especifica que o atributo não pode ser nulo
