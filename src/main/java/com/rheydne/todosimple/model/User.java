@@ -24,26 +24,26 @@ public class User {
 
     // Age junto com os groups, dos atributos
     // Serve para nao deixar os atributos nulos, vazios e fora do size na comunicação com o banco de dados
-    public interface CreateUser{} // Interface usada como marcação para validação ao criar um usuário
+    public interface CreateUser{}
 
-    public interface UpdateUser{} // Interface usada como marcação para validação ao atualizar um usuário
+    public interface UpdateUser{}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Necessário para definir o ID como identity no banco de dados
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Necessario para definir o ID como identity no banco de dados
     @Column(name = "id", unique = true)
     private Long id;
 
-    @Column(name = "username", length = 100, nullable = false, unique = true) // Define algumas características das colunas
-    @NotNull(groups = CreateUser.class) // O campo username não pode ser nulo ao criar um usuário
-    @NotEmpty(groups = CreateUser.class) // O campo username não pode ser vazio ao criar um usuário
-    @Size(groups = CreateUser.class, min = 2, max = 100) // O tamanho do campo username deve estar entre 2 e 100 caracteres ao criar um usuário
+    @Column(name = "username", length = 100, nullable = false, unique = true) // Define algumas caracteristicas das colunas
+    @NotNull(groups = CreateUser.class)
+    @NotEmpty(groups = CreateUser.class)
+    @Size(groups = CreateUser.class, min = 2, max = 100)
     private String username;
 
-    @JsonProperty(access = Access.WRITE_ONLY) // Vai garantir que a senha possa ser acessada apenas para ser escrita (sem retorno de dados na API)
+    @JsonProperty(access = Access.WRITE_ONLY) // Vai garantir que a senha podera ser acessada apenas para ser escrita (sem retorno de dados na api)
     @Column(name = "password", length = 60, nullable = false)
-    @NotNull(groups = { CreateUser.class, UpdateUser.class }) // O campo password não pode ser nulo ao criar ou atualizar um usuário
-    @NotEmpty(groups = { CreateUser.class, UpdateUser.class }) // O campo password não pode ser vazio ao criar ou atualizar um usuário
-    @Size(groups = { CreateUser.class, UpdateUser.class }, min = 8, max = 60) // O tamanho do campo password deve estar entre 8 e 60 caracteres ao criar ou atualizar um usuário
+    @NotNull(groups = { CreateUser.class, UpdateUser.class } )
+    @NotEmpty(groups = { CreateUser.class, UpdateUser.class } )
+    @Size(groups = { CreateUser.class, UpdateUser.class } , min = 8, max = 60)
     private String password;
 
     @OneToMany(mappedBy = "user") // Um usuário pode ter várias tarefas
