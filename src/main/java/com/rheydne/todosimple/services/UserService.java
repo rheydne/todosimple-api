@@ -22,14 +22,14 @@ public class UserService {
         )); // Retorna o usuário encontrado ou lança uma exceção se não for encontrado
     }
 
-    @Transactional
+    @Transactional // Caso ocorra qualquer erro do inicio ao fim desse metodo, isso dara rollback nas alteracoes feitas no BD 
     public User create(User obj) {
         obj.setId(null); // Define o ID do usuário como nulo para garantir a criação de um novo registro
         obj = this.userRepository.save(obj); // Salva o usuário no banco de dados usando o repositório
         return obj; // Retorna o usuário criado
     }
 
-    @Transactional
+    @Transactional // Caso ocorra qualquer erro do inicio ao fim desse metodo, isso dara rollback nas alteracoes feitas no BD
     public User update(User obj) {
         User newObj = findById(obj.getId()); // Busca o usuário a ser atualizado pelo ID
         newObj.setPassword(obj.getPassword()); // Atualiza a senha do usuário com a nova senha fornecida
