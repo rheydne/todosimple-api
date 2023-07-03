@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo Simple App</title>
+    <script src="script.js"></script> <!-- Importando o arquivo script.js -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> <!-- Importando o CSS do Bootstrap -->
+</head>
+<body>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status" id="loading"></div> <!-- Um spinner para exibir durante o carregamento -->
+        <span class="sr-only" id="loading-value">Carregando...</span>
+    </div>
+
+    <p class="h1 text-center">Tarefas de um usuário</p> <!-- Título da página -->
+
+    <table class="table table-hover">
+        <tbody id="tasks"></tbody> <!-- Área onde as tarefas serão exibidas -->
+    </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> <!-- Importando o JavaScript do Bootstrap -->
+</body>
+</html>
