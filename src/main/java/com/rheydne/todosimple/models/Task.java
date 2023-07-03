@@ -1,4 +1,4 @@
-package com.rheydne.todosimple.model;
+package com.rheydne.todosimple.models;
 
 import java.util.Objects;
 

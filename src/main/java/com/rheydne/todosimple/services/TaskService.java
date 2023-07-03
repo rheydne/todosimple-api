@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rheydne.todosimple.model.Task;
-import com.rheydne.todosimple.model.User;
+import com.rheydne.todosimple.models.Task;
+import com.rheydne.todosimple.models.User;
 import com.rheydne.todosimple.repositories.TaskRepository;
 
 @Service
